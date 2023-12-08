@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>creating_new_Element</title>
+</head>
+<body>
+    In this we are learning to create a new Element
+</body>
+<script>
+    //const ke baad jo variable likha hai vo variableName hai
+    //and createElement  ke andr jo div hai vo html vala div hai ;
+    const div = document.createElement('div') // we want to create an div;
+    console.log(div);
+    div.className = "main" ; //setting class name;
+    div.id = Math.round(Math.random()*10 +1) ;
+
+
+    //dekho hmare pass class name aur id hai toh hai directly but baaki html attributes ke liye we have setAttribute Method;
+    div.setAttribute("title" , "generated title") ;
+    div.style.backgroundColor ="green";
+    div.style.padding="12px" ;
+    //dekho optimization ki baat ;
+    div.innerText = "chaiaurcode" 
+    // ye jo above hai ye ek optimized way nhi hai bcz ye value ko override krta hai 
+    // overide in the sense ye pehle memory se innerHTML ko laata hai aur uski value set krta hai fir aur fir use place krta haii
+    //MORE EFFICIENT WAY ==> 
+    const addtext = document.createTextNode("chaiAURcODE") ; 
+    div.appendChild(addtext) ; 
+    // the above is an optimized way ;
+
+    ///MAJEDARBAAT///
+
+    // HMNE JO ABOVE KIYA HAI NA VO ABHI SIRF MEMORY ME HAI ABHI VO PAGE ME DISPLAY NHI HO RA DISPLAY KRNE KE LIYE HME USKO ATTACH KRNA HOGA VO KAISE ?
+    //document ki body ke andr child add kro ;
+    document.body.appendChild(div)
+
+</script>
+</html>
