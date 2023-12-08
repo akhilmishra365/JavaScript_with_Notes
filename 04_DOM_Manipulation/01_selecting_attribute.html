@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM LEARNING</title>
+</head>
+<body   style="background-color: black; color: blue;">
+    <div class="parent">
+        <div class="day">MONDAY</div>
+        <div class="day">TUESDAY</div>
+        <div class="day">WEDNESDAY</div>
+        <div class="day">FRIDAY</div>
+  
+</div>   
+</body>
+<script>
+    const parent = document.querySelector('.parent')
+    console.log(parent);
+    console.log(parent.children) ; 
+    console.log(parent.children[1].innerHTML) ; 
+    for (let i = 0; i < parent.children.length; i++) {
+        console.log(parent.children[i].innerHTML)
+        
+    }
+    parent.children[0].style.color = "red"
+    parent.children[1].style.color = "magenta"
+    parent.children[2].style.color = "pink"
+
+    console.log(parent.firstElementChild);  //to get first element child
+
+    console.log(parent.lastElementChild); // to get last element child
+
+//note that ==> query selector is an very expensive operation as it traverses an whole DOM tree
+    
+//we can also traverse from children to parenmt ;
+
+const dayone = document.querySelector('.day')
+console.log(dayone);
+console.log(dayone.parentElement) ;
+console.log(dayone.nextElementSibling); //monday ke bhai  tuesday 
+
+ 
+
+//MAJEDAR THING 
+console.log("NODES :", parent.childNodes) //9 
+//EXPLANATION => Dekho why answer is 9 bcz  jo dom tree bnta hai na vo actually me bhot complex hota hai;
+//usme jo hm log line change jo enter krte hai na usko bhi node element consider kiya jata hai
+//isi liye 9 bcz => parent ke baad ek enter fir 1 div fir ek enter fir ek div etc , yha pe hm enter ko text_element  kehte hai 
+
+//NoTE => HTML ME SIRF PEHLA LINE BREAK HI COUNT HOTA HAI USKE AAGE  KE LINE BREAK JB TK KOI TEXT NA HO VO COUNT NNHI HOTE
+
+
+
+
+</script>
+</html>
