@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chai aur code | DOM</title>
+</head>
+<body>
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langname)
+    {
+        const li = document.createElement('li')
+        li.innerHTML= `${langname}` ; 
+        document.querySelector('.language').
+        appendChild(li) ;
+        
+    }
+    
+    addLanguage("python")
+    addLanguage('typescript')
+
+
+    //The above is not an optimised approach ;
+
+    function addoptimizedlanguage(langName)
+    {
+        const li = document.createElement('li')
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    }
+    addoptimizedlanguage('GO  LANG')
+    //ABOVE IS THE MORE OPTIMIZED APPROACH
+    
+
+    //editing DOM
+
+    const second_lang = document.querySelector("li:nth-child(2)") ;  //selecting the language we have to chage 
+    //secondLang.innerHTML = "mojo" ==> unoptimized
+    const newli = document.createElement('li'); //create an new html element
+    newli.textContent = "mojo"; // creating a new html element 
+    second_lang.replaceWith(newli) // replacing original child with newly craeated child;
+
+
+    //ANOTHER METHOD TO EDIT ELEMENT;
+
+    // const first_language = document.querySelector("li:nth-child(1)")
+    // first_language.outerHTML= '<li>BRAINFUCK<li>'
+
+   // removing elements from DOM
+
+   const last_lang = document.querySelector('li:last-child') // n spaces in between and after colon ; 
+   last_lang.remove();
+
+   
+
+</script>
+</html>
