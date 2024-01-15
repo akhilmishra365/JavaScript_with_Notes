@@ -7,3 +7,5 @@ function globalFunction() {
 
 console.log(globalVariable); // Accessible outside the function
 globalFunction();
+
+

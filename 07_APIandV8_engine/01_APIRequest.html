@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX REQUEST</title>
+</head>
+<body>
+<!-- here we are learning ajax API request it is an old cob=nvention used before fetch but now it is not used much but jitta knowledge utta acha -->
+
+Value	State	Description
+0	UNSENT	Client has been created. open() not called yet.
+1	OPENED	open() has been called.
+2	HEADERS_RECEIVED	send() has been called, and headers and status are available.
+3	LOADING	Downloading; responseText holds partial data.
+4	DONE	The operation is complete.
+</body>
+<script>
+//XMLHttpRequest (XHR) is a JavaScript class that allows for asynchronous HTTP requests to be sent from a web browser to a web server.
+// It's a built-in browser object that allows for HTTP requests to be made in JavaScript
+const requesturl = 'https://dummy.restapiexample.com/api/v1/employees';
+const xhr = new XMLHttpRequest() 
+
+   xhr.open('GET' ,requesturl)
+   //The readystatechange event is fired whenever the readyState property of the XMLHttpRequest changes i.e jb bhi hme track krna ho stage change ko we use onreadystate change
+   xhr.onreadystatechange = function(){
+    //ye jo dot ready state hai na  ye property returns the state an XMLHttpRequest client is in.
+    console.log(xhr.readyState)
+    //ye neeche if condition lgayi hai ki maanlo jb state change ho toh kch kaam ho 
+
+    if(xhr.readyState === 4)
+    {
+        //responseText returns the text received from a server following a request being sent.
+        // dekho ab manlo hamre api me khi ek followers tha toh ager hm aise kre 
+        // const data = this.responseText
+        // console.log(data)
+        // console.log(date.followers)
+        // //toh ye error dega as most of the times jo API response aate hai vo string me hote hia is liye hm JSONparsers ka use krte hai
+        //, ki vo pura response JSON OBJECT ME BADAL JAYE, taki use as an object access kr sken.
+        const data = JSON.parse(this.responseText)
+        console.log(data);
+        console.log(data.followers)      
+    }
+ }
+   //ab aise abhi request jayegi ni so hme open ko call krna pdega aur open apne aap me call ni hota whave top use send method
+   xhr.send()
+//INTRESTING STUFF
+//DEKHO JO CORE JAVASCRIPT HAI USKE ANDR CONSOLE.LOG HAI HI NI CONSOLE.LOG IS A DEVTOOL INJECTED BY THE RUNTIME IT IS NOT A PART OF CORE JAVASCRIPT 
+</script>
+</html>
+

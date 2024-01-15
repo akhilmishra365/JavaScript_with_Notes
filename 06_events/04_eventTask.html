@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+   <h3>AB HM CHAHTE HAI KI JAISE HI HM START PRESS KRE TOH NAAM PRINT HONA START HO JAYE AUR JAISE HI STOP KRE NAAM PRINT HONA RUK JAYE</h3>
+    <button id="#start">START</button>
+    <BUTTON id="#stop"> STOP </BUTTON>
+</body>
+<script>
+    let interval ; 
+    const start_print   = function(){
+        console.log("akhil mishra")
+    }
+   
+    document.querySelector("#start").addEventListener('click',function(){
+        interval = setInterval(start_print,1000)
+    })
+    document.querySelector("#stop").addEventListener('click' , function(){
+        clearInterval(interval) ;
+    })
+
+
+
+
+
+
+
+
+</script>
+</html>

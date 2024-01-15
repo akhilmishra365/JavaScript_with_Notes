@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CHAI AUR CODE</h1>
+    <button id = "stop">stop</button>
+</body>
+<script>
+    //set time out ==>
+
+    setTimeout(function(){
+        console.log("akhil mishra");
+    },2000)
+    //ye kya krta hia ki 2000 ms ke baad akhil print krdega
+
+    //handeler ==> ek call back function  jiska naam ni hota 
+
+
+    //set interval ==>
+    setInterval(function(){
+        console.log("akhil mishra");
+    },2000)
+    //ye kya krega 2000 ms ke interval pe naam print krta rhega 
+
+    // we can also use function refrence instead of whole funtion in set time out 
+
+    const say_myname = function(){
+        console.log("oh yeah daddy")
+    }
+    setTimeout(say_myname , 2000)
+
+//task is hme chahiye ki chai aur codeko change krna hai but 2sec time ke baad 
+//agr neeche wale method se krenge toh turnat ho jayega toh is liye set timeout ka use krenge
+    
+    // document.querySelector('h1').innerHTML="Best Js series by akhil"
+    const change_heading = function(){
+        document.querySelector('h1').innerHTML="Best Js series by akhil"
+    }
+    
+setTimeout(change_heading,2000)
+
+//dekho ab hme hmne timeout set krna seekh liya set time out se but ab hme set timeout rokna hai uske liye we use clear timeout function 
+
+//clearTimeout used for this purpose is cleartime out ko chahiye ek refrence ki konsa timeout ko clear krna hai
+// toh chlo ise kisi event pe lgaye 
+// i.e jb hm stoop pe click kre 2 second hone se pehle toh ye timeout execute na ho mtlb ki heading na chnage ho 
+const changeme = setTimeout(change_heading,2000)
+document.querySelector('#stop').addEventListener('click' ,function()
+{
+    //ye changeme is a refrence of settimeout used above
+    clearTimeout(changeme) ; 
+    console.log("stoppeed") ; 
+})
+
+
+</script>
+</html>

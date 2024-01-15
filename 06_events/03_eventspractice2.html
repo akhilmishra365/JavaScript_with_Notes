@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        JAVASCRIPT IS LOBE LOBE
+    </h1>
+    
+   <button id="START" style="background: #000;color: blue ;">Start</button>
+   <button id="stop" style="background: #000;color: blue ;">Stop</button>
+</body>
+<script>
+    //novice method
+    // setInterval(function(){
+    //     consoole.log("AKHIL "  ,Date.now())
+    // },1000)
+    //we can pass it on our function 
+    const Date = function(){
+      console.log("AKHIL "  ,Date.now)
+    }
+    setInterval(Date , 1000)
+    //set interval can also take parameters
+    const Date2 = function(str){
+      console.log("AKHIL "  ,Date.now)
+    }
+    const intervalid= setInterval(Date2 , 1000 , "hey_nigga");
+
+    //ab isko rokene kea tareeeka  just as similar as cleartimeout
+    clearInterval(intervalid)
+    
+
+    
+    
+
+
+
+</script>
+</html>

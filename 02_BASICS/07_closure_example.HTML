@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="orange">Orange</button>
+    <BUTTON id="GREEN">GREEN</BUTTON>
+
+      <!-- PRACTICAL IMPLEMENTATION OF LEXICAL SCOPING 
+HM EK BUTTON BNATE HAI ORANGE 
+AUR EK AUR BUTTON BNATE HAI GREEN COLOR KA 
+AB SIMPLE SA GOAL HAI HMARA KI JB ORANGE PE CLICK HO TOH BACKGROUND ORANGE HO JAYE 
+JB GREEN CLICK HO TOH BACKGROUND GREEN HO JAYE  -->
+
+
+
+
+</body>
+<!-- <script>
+    document.getElementById('orange').onclick = function()
+    {
+        document.body.style.backgroundColor = "orange"
+    }
+    document.getElementById('green').onclick = function()
+    {
+        document.body.style.backgroundColor = "green"
+    }
+    Ab dekho ye abhi toh ho gya kyunki 2 button hai aise agr 100000 buttonnho toh ?
+    tb ky ahoga tb toh bhai baar baar copy paste ? so neeche script tage me solution
+</script> -->
+
+
+
+<script>
+    // toh above problem ke liye hm ek click handler usse kr le re 
+    // function clickhandler (color){
+    //     document.body.style.backgroundColor = `${color}`
+    // }
+    //ab problem ye aayi hai ki hmne ise de diya hai fumnction ka refrence tbhi kaam ni kr ra
+    // document.getElementById('orange').onclick = clickhandler
+
+    //aur agr hm function de re click handleer toh alg gadbad hgo ri 
+    // document.getElementById('orange').onclick = clickhandler("orange")
+    // abhi bhi kaam ni kr ra
+    //problem kya hui ki onlick ek function maangta hai but hmne use function dediya but vo execute ho jaa ra baar baar
+    // toh baba hme uski function definition ko change krna pdega  
+    function clickhandler (color){
+       
+       return function ()
+       {
+        document.body.style.backgroundColor = `${color}`
+       }
+
+       
+    }
+    //ab closure ki wajah se hi kaam ho ra
+    
+
+
+
+
+</script>
+</html>

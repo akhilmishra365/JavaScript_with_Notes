@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>htnml Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <!-- we can use onclick event in java script after alt tag but in javascript it is not scaleble itta jyada but react k case me it is scalable codee -->
+            <!-- <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" onclick="alert('hello')"></li> -->
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+
+<script>
+// javascript k andr jitne bhi events hai vo sequentially run krte hai aur javascript events vo bhi asequeuentially chlte hai jo tb kaam krrega jb koi browser me kch hoga
+// 2nd approach good approach buut less features
+document.getElementById('owl').onclick= function(){
+    alert("owl clicked")
+
+}
+//the above is also a good approach but ye jo approach hai na hme jayada kch info in deta aur hmare isme propogation ni ho paati toh best approach is use 
+//event listeners
+// 3rd approach ==> use event listners.
+// ye jo hmne neeche click likha hai vo ek event hai hm mdn pe jaake aise aur saaare events pdh skte hai,
+//  aur ye jo false hai ye default hota hai but it is good to remember false as interview me bhot se aise app hain jo bina is false ke complete hi ni ho skte 
+document.getElementById("river").addEventListener("click",function(){
+    alert("riverclicked")
+} , false)
+
+//EVENT OBJECT ==>
+document.getElementById("river").addEventListener("click",function(e){
+    console.log(e)
+} , false)
+
+//YE KCH EVENT HAI JO KI NEECHE HAI INHE DEKH LO YE IMPORTANT HAI INTERVIEW PROSPECTIVE SE BHI AUR DEVELOPMENT PROSPECTIVE SE BHI
+
+//type , timestamp , defaultprevented ,  
+//target , toelement ,  sourcelement , current target 
+//clientX clientY  , screenX , SCRREN Y ,OFFSET
+//ALTKEY , CTRLKEY , SHIFTKEY , KEYCODE,
+
+//EVENT PROPOGATION  ==> 
+// USED HAS TWO CONTEXT ==> EVENT BUBBLING (JB DEFAUKT FALSE HO ) , EVENT CAPTURING (JB DEFAULT TRUE HO TOH )
+
+// EXAMPLE FOR EVENT CAPTURING
+
+document.getElementById("images").addEventListener("click",function(e){
+
+    console.log("CLICKED INSIDE UL") ; 
+} , false) ; 
+
+document.getElementById('owl').addEventListener("click",function (e){
+    console.log("owl clicked") ; 
+     //dekho kyi baar hm ni chahte ki hmare event ki bubbling ho that is inner alememnt alg reh jaye aur outer element alg aur un dono ki bubbling na ho us case me hm use case me==>
+    //  yha jo e event hmne capture kiya hai usi ka use kreneg, aur mrthod use krenge 
+    //  e.stopPropagation() ;  ==> ye similar to stop default behaviour ke ;
+
+}) ; 
+// prevent default ==> used when we have to stop an event from doing its default behaviour for ex google ko ni chah re ki vo hme google pe redirect kre;
+
+document.getElementById('google').addEventListener('click',function(e)
+{
+    console.log("google clicked")
+    e.preventDefault() ; 
+    // aur chah re ki propgation na ho i.e bubbling ni ho is liye ==>
+    e.stopPropagation() ;
+
+})
+
+// NOTE BABA ==> 
+// dekho abhi jb upr default false hai toh event bubbling hogi toh jb hm owl pe click krenge toh owl bhi hmara images ke ul me hi hai na toh 
+// ye kaise hoga ki kon sa pehle ayega toh dekho bro sbse pehle ayega owl clicked and uske bad clicked inside bcz yha bubbling ho ri jaise gubbara neeche se upr usi tarah ye method bhi pehle inner fir outer 
+
+// but now event capturing ki jb baat aaye toh default true hoga tb kya,
+//  hoga tb hmara top to bottom chlega pehle ayrega ki clicked inside ul and then ayega owl clicked. 
+
+document.getElementById("images").addEventListener("click",function(e){
+
+console.log("CLICKED INSIDE UL") ; 
+} , true) ; 
+
+document.getElementById('owl').addEventListener("click",function (e){
+console.log("owl clicked") ; 
+},true) ; 
+
+//AB EK TASK ==> hme aisa feature design krna hai ki user jis image ko click kre vo image remove ho jaye screen se ==>
+// solution ==>
+
+// dekho ya toh individual element ko tag kre ya fir ek saath saare toh ek sath krte haii taaki code scalable ho  badhiaya se ==>
+
+document.querySelector("#images").addEventListener('click',function(e)
+{
+    //e.target ek event object hai jo hme deta hi ki kha se ye event generate hua hai ,
+    //toh kyi baar aisa hota hai ki hme target ke parent ko bhi accessa krnahai so is liye .parentnode
+    //is case me hme sirf image thodi htani hai hme toh puri li ko udana hai(vrnaimage toh chli jayegi but vo bullet point vhi reh jayega) is liye image ka parent element hmare pass ayega li 
+
+    console.log(e.target.parentNode)
+    // now to remove we have two approaches ==>
+    let removeit = e.target.parentNode
+    // first methood ==>
+     removeIt.remove() 
+     //DEKHO BRO YE JOHMNE KIYA HAI ISME EK DIKKAT HAI KI JB HM AGR LIST ITEM PE CLICK KRENGE NA TOH LI KA PRENT  HAI UL TOH YE PURI UL KO HI UDA DEGA
+     //ISKE LIYE HM USE KR SKTE HAI HAMARA EXTRA CHECSK IF ELSE
+
+     //SO FIRST IS ==>
+     Console.log(e.target.tagName) ; 
+     //tag name ek event object hai jo hme target konsa tag hai vo btata hai;
+
+     if(e.target.tagName === 'IMG')
+     {
+
+        let removeIt = e.target.parentNode
+        removeIt.remove() ; 
+     }
+//take a deep dive in event bro buddy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //another method ==> 
+    // removeit.parentNode.removeChild(removeit)
+    // dekho isme hm double parent ko call kr re 
+    // removeit me hmne pehle hi kiya tha ki ==>e.target.parentNode isse hme event (image) ka paraent mila li ;
+    //ab//removeit.parentNode.removeChild(removeit) ab remove it ka parent dhundh re uska parent hoga ul ab ul se keh re ki apne child(li) ko remove kro ;
+
+  //SO BOTH CAN BE USED BASED ON CONVININECE
+
+})
+
+
+
+
+
+
+
+</script>
+
+</html>
